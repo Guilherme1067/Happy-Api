@@ -3,6 +3,15 @@ import {Request, Response} from 'express';
 import Orphanage from '../models/Orphanages'
 
 export default {
+    async index(request: Request, response: Response){
+       
+        const orphanagesRepository = getRepository(Orphanage);
+
+        const orphanages = await orphanagesRepository.find();
+        
+        return response.json(orphanages)
+    },
+
     async create(request: Request , response: Response) {
         const {
             name,
